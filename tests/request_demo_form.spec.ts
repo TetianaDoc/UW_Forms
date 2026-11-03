@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async({page}) => {
-    await page.goto('https://qa.userway.dev/')
+    await page.goto('https://qa.userway.dev/', { waitUntil: 'networkidle' })
     await page.getByText('Request a Demo').click()
 })
 
 test('Check if Demo form has all elements', async ({ page }) => {
-    const popupTitle = page.locator('h1#popupTitle.popup-main__title')
+    const popupTitle = page.locator('h2#popupTitle.popup-main__title')
     await expect(popupTitle).toHaveText('Request a Demo')
 
     const subText = page.locator('p#popupDescription.popup-main__sub-title')
@@ -15,7 +15,7 @@ test('Check if Demo form has all elements', async ({ page }) => {
     const email = page.locator('#email')
     await expect(email).toBeEditable()
 
-    const placeholder = await email.getAttribute('placeholder')
-    expect(placeholder).toEqual("Business Email (required)")
+    const emailLabel = page.locator('label[for="email"]')
+    await expect(emailLabel).toHaveText("Business Email (required)")
 
 });

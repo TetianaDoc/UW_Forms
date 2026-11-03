@@ -22,9 +22,11 @@ export default defineConfig({
       use: { ...devices['Desktop Firefox'] },
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // WebKit is disabled on macOS 12 because Playwright 1.49.1 uses a frozen WebKit v2009 binary
+    // that does not support the FixedBackgroundsPaintRelativeToDocument protocol setting.
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
   ]
 });
