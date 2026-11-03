@@ -1,3 +1,3 @@
 # UW_Forms
-Automation tests using Playwright and TS for the website Userway.org
+Automation tests using Playwright and TypeScript for testing forms submission on the website https://qa.userway.dev/
 
