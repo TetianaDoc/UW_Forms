@@ -1,14 +1,17 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests', // Directory where your test files are stored
+  testDir: './tests', // Directory where test files are stored
   fullyParallel: true,
   retries: 1,         // Number of retries for failed tests
   reporter: 'html',   // Test report format
   use: {
+    baseURL: process.env.BASE_URL || 'https://qa.userway.dev',
     headless: true,   // Run tests in headless mode
     viewport: { width: 1280, height: 720 }, // Browser viewport size
     ignoreHTTPSErrors: true, // Ignore HTTPS errors during tests
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
   },
   /* Configure projects for major browsers */
   projects: [

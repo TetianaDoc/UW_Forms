@@ -1,2 +1,17 @@
+# Playwright test outputs
 playwright-report/
 test-results/
+blob-report/
+playwright/.cache/
+
+# Dependencies
+node_modules/
+
+# OS and Editor files
+.DS_Store
+.vscode/
+*.swp
+*.log
+
+# Build / Output
+dist/

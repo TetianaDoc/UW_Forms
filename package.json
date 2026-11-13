@@ -1,12 +1,24 @@
 {
   "name": "uw_forms",
   "version": "1.0.0",
-  "description": "",
+  "description": "Playwright end-to-end tests for UserWay forms and widget pricing",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
+  "keywords": [
+    "playwright",
+    "typescript",
+    "automation",
+    "e2e-testing"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -14,6 +26,6 @@
     "@types/node": "^22.10.5",
     "playwright": "^1.49.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   }
 }
