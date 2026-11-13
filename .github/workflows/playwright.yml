@@ -20,7 +20,7 @@ jobs:
   test:
     name: Run Playwright Tests
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout repository
@@ -39,7 +39,7 @@ jobs:
         run: npm run typecheck
 
       - name: Install Playwright browsers & dependencies
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium firefox
 
       - name: Execute Playwright tests
         run: npm test
@@ -54,3 +54,4 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+          if-no-files-found: ignore

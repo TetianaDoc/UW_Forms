@@ -176,7 +176,7 @@ Automated testing is configured via **GitHub Actions** in [.github/workflows/pla
   1. Checks out repository code and sets up Node.js 20 with npm caching.
   2. Installs clean dependencies via `npm ci`.
   3. Verifies TypeScript types with `npm run typecheck`.
-  4. Downloads Playwright browser binaries and system OS dependencies via `npx playwright install --with-deps`.
+  4. Downloads Playwright browser binaries and system OS dependencies via `npx playwright install --with-deps chromium firefox`.
   5. Executes end-to-end tests across Chromium and Firefox.
   6. Uploads the HTML report artifact (`playwright-report/`) retained for 30 days, even if tests fail.
 
