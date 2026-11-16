@@ -18,7 +18,8 @@
   },
   "include": [
     "playwright.config.ts",
-    "tests/**/*.ts"
+    "tests/**/*.ts",
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",

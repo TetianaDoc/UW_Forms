@@ -55,7 +55,17 @@ UW_Forms/
 ├── .github/
 │   └── workflows/
 │       └── playwright.yml          # GitHub Actions CI workflow
+├── src/
+│   ├── data/
+│   │   └── formsData.ts            # Data-driven dataset of 20 demo forms (id, name, path, testEmail)
+│   ├── fixtures/
+│   │   └── testFixtures.ts         # Playwright test.extend custom fixtures (baseFormPage, thankYouPage)
+│   └── pages/
+│       ├── BasePage.ts             # Abstract base page handling navigation, load states & lifecycle
+│       ├── BaseFormPage.ts         # Base form POM encapsulating input locators & fillAndSubmitForm()
+│       └── ThankYouPage.ts         # Thank-you success endpoint POM handling URL & heading assertions
 ├── tests/
+│   ├── demo-forms.spec.ts          # Data-driven parameterized test suite executing across parallel workers
 │   ├── request_demo_form.spec.ts   # "Request a Demo" modal form assertions & validation
 │   └── widget_pricing_tabs.spec.ts # Widget pricing page structure & lazy-loaded content verification
 ├── playwright.config.ts            # Playwright runner configuration (baseURL, retries, projects)
@@ -81,6 +91,14 @@ Tests the **"Request a Demo"** modal dialog triggered from the homepage:
 Tests the **/widget/** page layout and content delivery:
 - **Lazy Load Simulation**: Uses a custom helper (`scrollToLoadAllContent`) to scroll down the DOM progressively and ensure dynamically hydrated sections are loaded into the page.
 - **Content Heading Verification**: Validates all expected `<h2>` section headings across the entire widget page (e.g., pricing bundles, security & privacy, add-ons, FAQs).
+
+### 3. `tests/demo-forms.spec.ts`
+Data-driven automated test suite verifying **20 demo forms** that redirect to a shared **"Thank You"** endpoint:
+- **Page Object Model (POM)**: Implemented using `BasePage`, `BaseFormPage`, and `ThankYouPage`.
+- **Custom Fixtures**: Uses `test.extend` in `src/fixtures/testFixtures.ts` to automatically inject `baseFormPage` and `thankYouPage` page objects into tests.
+- **Parameterized Data Loop**: Iterates through 20 distinct forms defined in `src/data/formsData.ts` (`id`, `name`, `path`, `testEmail`).
+- **Parallel Worker Execution**: Configured with `test.describe.configure({ mode: 'parallel' })` to run tests concurrently across multiple workers.
+- **Shared Endpoint Assertions**: Validates that submitting each form navigates to the shared Thank You endpoint pattern (`/\/thank-you/i`) and displays the success heading.
 
 ---
 
